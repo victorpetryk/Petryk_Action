@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Petryk_Action>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Petryk_Action>
+    </modules>
+</config>

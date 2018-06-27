@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Petryk_Action>
+            <version>0.1.0</version>
+        </Petryk_Action>
+    </modules>
+</config>
