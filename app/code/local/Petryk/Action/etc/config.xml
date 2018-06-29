@@ -25,5 +25,12 @@
                 </entities>
             </petryk_action_resource>
         </models>
+        <resources>
+            <petryk_action_setup>
+                <setup>
+                    <module>Petryk_Action</module>
+                </setup>
+            </petryk_action_setup>
+        </resources>
     </global>
 </config>
