@@ -11,5 +11,19 @@
                 <class>Petryk_Action_Helper</class>
             </petryk_action>
         </helpers>
+        <models>
+            <petryk_action>
+                <class>Petryk_Action_Model</class>
+                <resourceModel>petryk_action_resource</resourceModel>
+            </petryk_action>
+            <petryk_action_resource>
+                <class>Petryk_Action_Model_Resource</class>
+                <entities>
+                    <action>
+                        <table>petryk_action</table>
+                    </action>
+                </entities>
+            </petryk_action_resource>
+        </models>
     </global>
 </config>

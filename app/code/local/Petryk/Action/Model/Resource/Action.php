@@ -1,0 +1,15 @@
+<?php
+/**
+ * Action resource model
+ *
+ * @category Petryk
+ * @package Petryk_Action
+ * @author Victor Petryk <victor.petryk@gmail.com>
+ */
+class Petryk_Action_Model_Resource_Action extends Mage_Core_Model_Resource_Db_Abstract
+{
+    protected function _construct()
+    {
+        $this->_init('petryk_action/action', 'action_id');
+    }
+}
