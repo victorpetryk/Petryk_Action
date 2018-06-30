@@ -33,4 +33,15 @@
             </petryk_action_setup>
         </resources>
     </global>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <petryk_action before="Mage_Adminhtml">Petryk_Action_Adminhtml</petryk_action>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
 </config>
