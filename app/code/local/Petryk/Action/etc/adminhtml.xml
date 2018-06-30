@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<config>
+    <menu>
+        <promo>
+            <children>
+                <petryk_action translate="title" module="petryk_action">
+                    <title>Manage Promotions</title>
+                    <action>adminhtml/petryk_action</action>
+                    <sort_order>3</sort_order>
+                </petryk_action>
+            </children>
+        </promo>
+    </menu>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <promo>
+                        <children>
+                            <petryk_action translate="title" module="petryk_action">
+                                <title>Manage Promotions</title>
+                            </petryk_action>
+                        </children>
+                    </promo>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>
