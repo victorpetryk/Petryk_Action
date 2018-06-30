@@ -6,6 +6,11 @@
         </Petryk_Action>
     </modules>
     <global>
+        <blocks>
+            <petryk_action>
+                <class>Petryk_Action_Block</class>
+            </petryk_action>
+        </blocks>
         <helpers>
             <petryk_action>
                 <class>Petryk_Action_Helper</class>
@@ -44,4 +49,13 @@
             </adminhtml>
         </routers>
     </admin>
+    <adminhtml>
+        <layout>
+            <updates>
+                <petryk_action>
+                    <file>petryk/action.xml</file>
+                </petryk_action>
+            </updates>
+        </layout>
+    </adminhtml>
 </config>
