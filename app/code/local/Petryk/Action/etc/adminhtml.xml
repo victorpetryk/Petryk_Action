@@ -1,16 +1,20 @@
 <?xml version="1.0"?>
 <config>
+    <!-- Пункт меню -->
     <menu>
+        <!-- Додаємо пункт меню як дочірній до батьківського "Promotions" -->
         <promo>
             <children>
                 <petryk_action translate="title" module="petryk_action">
-                    <title>Manage Promotions</title>
+                    <title>Керування акціями</title>
                     <action>adminhtml/petryk_action</action>
                     <sort_order>3</sort_order>
                 </petryk_action>
             </children>
         </promo>
     </menu>
+
+    <!-- Додаємо можливість налаштувати права доступу до "Керування акціями" -->
     <acl>
         <resources>
             <admin>
@@ -18,7 +22,7 @@
                     <promo>
                         <children>
                             <petryk_action translate="title" module="petryk_action">
-                                <title>Manage Promotions</title>
+                                <title>Керування акціями</title>
                             </petryk_action>
                         </children>
                     </promo>
