@@ -1,6 +1,7 @@
 <?php
+
 /**
- * Action collection
+ * Колекція акцій
  *
  * @category Petryk
  * @package Petryk_Action

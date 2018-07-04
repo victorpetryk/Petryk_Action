@@ -1,6 +1,7 @@
 <?php
+
 /**
- * Action resource model
+ * Ресурсна модель акції
  *
  * @category Petryk
  * @package Petryk_Action
