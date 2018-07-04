@@ -207,4 +207,15 @@ class Petryk_Action_Adminhtml_Petryk_ActionController extends Mage_Adminhtml_Con
 
         $this->_redirect('*/*/');
     }
+
+    /**
+     * Вивід гріда для ajax-запиту
+     */
+    public function gridAction()
+    {
+        $this->loadLayout();
+        $this->getResponse()->setBody(
+            $this->getLayout()->createBlock('petryk_action/adminhtml_action_grid')->toHtml()
+        );
+    }
 }
