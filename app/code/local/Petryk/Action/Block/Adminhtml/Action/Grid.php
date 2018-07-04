@@ -44,14 +44,17 @@ class Petryk_Action_Block_Adminhtml_Action_Grid extends Mage_Adminhtml_Block_Wid
         $this->addColumn('action_id', array(
             'header' => Mage::helper('petryk_action')->__('ID'),
             'align' => 'right',
-            'type' => 'number',
             'width' => '50px',
+            'type' => 'number',
             'index' => 'action_id',
         ));
 
         $this->addColumn('image', array(
             'header' => Mage::helper('petryk_action')->__('Зображення'),
+            'align' => 'center',
             'width' => '60px',
+            'renderer' => Mage::getBlockSingleton('petryk_action/adminhtml_action_grid_renderer_image'),
+            'index' => 'image',
             'filter' => false,
             'sortable' => false,
         ));
@@ -67,9 +70,9 @@ class Petryk_Action_Block_Adminhtml_Action_Grid extends Mage_Adminhtml_Block_Wid
             'header' => Mage::helper('petryk_action')->__('Короткий опис'),
             'align' => 'left',
             'type' => 'text',
+            'index' => 'short_description',
             'truncate' => 120,
             'escape' => true,
-            'index' => 'short_description',
         ));
 
         $this->addColumn('is_active', array(
@@ -77,8 +80,8 @@ class Petryk_Action_Block_Adminhtml_Action_Grid extends Mage_Adminhtml_Block_Wid
             'align' => 'left',
             'width' => '70px',
             'type' => 'options',
-            'options' => $activeSource,
             'index' => 'is_active',
+            'options' => $activeSource,
         ));
 
         $this->addColumn('status', array(
@@ -86,8 +89,8 @@ class Petryk_Action_Block_Adminhtml_Action_Grid extends Mage_Adminhtml_Block_Wid
             'align' => 'left',
             'width' => '130px',
             'type' => 'options',
-            'options' => $statusSource,
             'index' => 'status',
+            'options' => $statusSource,
         ));
 
         $this->addColumn('start_datetime', array(
