@@ -104,9 +104,6 @@ class Petryk_Action_Adminhtml_Petryk_ActionController extends Mage_Adminhtml_Con
             // Встановлюємо дані для моделі
             $model->setData($data);
 
-            // Завантажуємо зображення
-            Mage::helper('petryk_action')->uploadImage('image', $model);
-
             // Намагаємося зберегти дані в базу даних
             try {
                 // Зберігаємо дані
