@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<layout>
+    <adminhtml_petryk_action_index>
+        <reference name="content">
+            <block type="petryk_action/adminhtml_action" name="petryk_action.index"/>
+        </reference>
+    </adminhtml_petryk_action_index>
+
+    <adminhtml_petryk_action_new>
+        <update handle="adminhtml_petryk_action_edit"/>
+    </adminhtml_petryk_action_new>
+
+    <adminhtml_petryk_action_edit>
+        <update handle="editor"/>
+        <reference name="content">
+            <block type="petryk_action/adminhtml_action_edit" name="petryk_action.edit"/>
+        </reference>
+        <reference name="left">
+            <block type="petryk_action/adminhtml_action_edit_tabs" name="petryk_action.edit.tabs"/>
+        </reference>
+    </adminhtml_petryk_action_edit>
+</layout>
