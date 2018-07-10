@@ -41,6 +41,9 @@ class Petryk_Action_Block_Adminhtml_Action_Grid extends Mage_Adminhtml_Block_Wid
         $statusSource = Mage::getModel('petryk_action/source_status')->toArray();
         $activeSource = Mage::getModel('petryk_action/source_active')->toArray();
 
+        // Задаємо формат дати
+        $dateTimeFormat = Mage::app()->getLocale()->getDateTimeFormat(Mage_Core_Model_Locale::FORMAT_TYPE_MEDIUM);
+
         $this->addColumn('action_id', array(
             'header' => Mage::helper('petryk_action')->__('ID'),
             'align' => 'right',
@@ -96,12 +99,14 @@ class Petryk_Action_Block_Adminhtml_Action_Grid extends Mage_Adminhtml_Block_Wid
         $this->addColumn('start_datetime', array(
             'header' => Mage::helper('petryk_action')->__('Дата початку'),
             'type' => 'datetime',
+            'format' => $dateTimeFormat,
             'index' => 'start_datetime',
         ));
 
         $this->addColumn('end_datetime', array(
             'header' => Mage::helper('petryk_action')->__('Дата закінчення'),
             'type' => 'datetime',
+            'format' => $dateTimeFormat,
             'index' => 'end_datetime',
         ));
 
