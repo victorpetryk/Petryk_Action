@@ -22,7 +22,7 @@ class Petryk_Action_Block_Adminhtml_Action_Edit_Tab_General extends Mage_Adminht
         $activeSource = Mage::getModel('petryk_action/source_active')->toOptionArray();
 
         // Задаємо формат дати
-        $dateFormat = Mage::app()->getLocale()->getDateFormat(Mage_Core_Model_Locale::FORMAT_TYPE_SHORT);
+        $dateTimeFormat = Mage::app()->getLocale()->getDateTimeFormat(Mage_Core_Model_Locale::FORMAT_TYPE_SHORT);
 
         // Створюємо форму
         $form = new Varien_Data_Form();
@@ -60,23 +60,25 @@ class Petryk_Action_Block_Adminhtml_Action_Edit_Tab_General extends Mage_Adminht
             'disabled' => true,
         ));
 
-        $fieldset->addField('start_datetime', 'date', array(
+        $fieldset->addField('start_datetime', 'datetime', array(
             'name' => 'start_datetime',
             'label' => Mage::helper('petryk_action')->__('Дата початку'),
             'title' => Mage::helper('petryk_action')->__('Дата початку'),
             'image' => $this->getSkinUrl('images/grid-cal.gif'),
-            'input_format' => Varien_Date::DATE_INTERNAL_FORMAT,
-            'format' => $dateFormat,
+            'input_format' => Varien_Date::DATETIME_INTERNAL_FORMAT,
+            'format' => $dateTimeFormat,
+            'time' => true,
             'required' => true,
         ));
 
-        $fieldset->addField('end_datetime', 'date', array(
+        $fieldset->addField('end_datetime', 'datetime', array(
             'name' => 'end_datetime',
             'label' => Mage::helper('petryk_action')->__('Дата закінчення'),
             'title' => Mage::helper('petryk_action')->__('Дата закінчення'),
             'image' => $this->getSkinUrl('images/grid-cal.gif'),
-            'input_format' => Varien_Date::DATE_INTERNAL_FORMAT,
-            'format' => $dateFormat,
+            'input_format' => Varien_Date::DATETIME_INTERNAL_FORMAT,
+            'format' => $dateTimeFormat,
+            'time' => true,
         ));
 
         // Задаємо свій рендерер для відображення зображення у формі
