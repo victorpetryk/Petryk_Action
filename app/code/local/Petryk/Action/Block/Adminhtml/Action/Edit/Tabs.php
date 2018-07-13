@@ -20,14 +20,18 @@ class Petryk_Action_Block_Adminhtml_Action_Edit_Tabs extends Mage_Adminhtml_Bloc
         $this->setTitle(Mage::helper('petryk_action')->__('Інформація про акцію'));
     }
 
-    public function _prepareLayout()
+    public function _beforeToHtml()
     {
-        /**
-         * Додаємо таби
-         */
+        // Таба з формою редагування/створення акції
         $this->addTab('action_main_tab', 'petryk_action/adminhtml_action_edit_tab_general');
-        //$this->addTab('action_product_tab', 'petryk_action/adminhtml_action_edit_tab_product');
 
-        return parent::_prepareLayout();
+        // Таба з товарами
+        $this->addTab('action_products_tab', array(
+            'label' => Mage::helper('petryk_action')->__('Товари'),
+            'url' => $this->getUrl('*/*/products', array('_current' => true)),
+            'class' => 'ajax'
+        ));
+
+        return parent::_beforeToHtml();
     }
 }
