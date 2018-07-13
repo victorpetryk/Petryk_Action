@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Petryk_Action>
-            <version>0.1.1</version>
+            <version>0.1.2</version>
         </Petryk_Action>
     </modules>
     <global>
@@ -27,6 +27,9 @@
                     <action>
                         <table>petryk_action</table>
                     </action>
+                    <action_product>
+                        <table>petryk_action_product</table>
+                    </action_product>
                 </entities>
             </petryk_action_resource>
         </models>
