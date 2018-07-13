@@ -19,4 +19,26 @@
             <block type="petryk_action/adminhtml_action_edit_tabs" name="petryk_action.edit.tabs"/>
         </reference>
     </adminhtml_petryk_action_edit>
+
+    <adminhtml_petryk_action_products>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="petryk_action/adminhtml_action_edit_tab_products" name="petryk_action.tab.products"/>
+            <block type="adminhtml/widget_grid_serializer" name="petryk_action.products.grid.serializer">
+                <reference name="petryk_action.products.grid.serializer">
+                    <action method="initSerializerBlock">
+                        <grid_block_name>petryk_action.tab.products</grid_block_name>
+                        <data_callback>getSelectedActionProducts</data_callback>
+                        <hidden_input_name>links[products]</hidden_input_name>
+                        <reload_param_name>action_products</reload_param_name>
+                    </action>
+                </reference>
+            </block>
+        </block>
+    </adminhtml_petryk_action_products>
+
+    <adminhtml_petryk_action_productsgrid>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="petryk_action/adminhtml_action_edit_tab_products" name="petryk_action.tab.products"/>
+        </block>
+    </adminhtml_petryk_action_productsgrid>
 </layout>
