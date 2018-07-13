@@ -104,6 +104,17 @@ class Petryk_Action_Adminhtml_Petryk_ActionController extends Mage_Adminhtml_Con
             // Встановлюємо дані для моделі
             $model->setData($data);
 
+            // Якщо зображення вже завантажене, то беремо попереднє значення поля image
+            if (isset($data['image']['value']) && !isset($data['image']['delete'])) {
+                $model->setData('image', $data['image']['value']);
+            }
+
+            // Беремо прив'язані товари та декодуємо в правильний формат
+            if (isset($data['links']['products'])) {
+                $model->setData('action_products',
+                    Mage::helper('adminhtml/js')->decodeGridSerializedInput($data['links']['products']));
+            }
+
             // Завантажуємо зображення
             Mage::helper('petryk_action')->uploadImage('image', $model);
 
@@ -212,7 +223,7 @@ class Petryk_Action_Adminhtml_Petryk_ActionController extends Mage_Adminhtml_Con
     }
 
     /**
-     * Вивід гріда для ajax-запиту
+     * Вивід гріда акцій для ajax-запиту
      */
     public function gridAction()
     {
@@ -220,5 +231,31 @@ class Petryk_Action_Adminhtml_Petryk_ActionController extends Mage_Adminhtml_Con
         $this->getResponse()->setBody(
             $this->getLayout()->createBlock('petryk_action/adminhtml_action_grid')->toHtml()
         );
+    }
+
+    /**
+     * Вивід гріда товарів в табі
+     */
+    public function productsAction()
+    {
+        $this->loadLayout();
+
+        $this->getLayout()->getBlock('petryk_action.tab.products')
+            ->setActionProducts($this->getRequest()->getPost('action_products', null));
+
+        $this->renderLayout();
+    }
+
+    /**
+     * Вивід гріда товарів для ajax-запиту
+     */
+    public function productsGridAction()
+    {
+        $this->loadLayout();
+
+        $this->getLayout()->getBlock('petryk_action.tab.products')
+            ->setActionProducts($this->getRequest()->getPost('action_products', null));
+
+        $this->renderLayout();
     }
 }
