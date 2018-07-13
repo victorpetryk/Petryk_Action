@@ -40,6 +40,7 @@ class Petryk_Action_Block_Adminhtml_Action_Edit_Tab_General extends Mage_Adminht
 
         $fieldset->addField('name', 'text', array(
             'name' => 'name',
+            'class' => 'validate-no-html-tags',
             'label' => Mage::helper('petryk_action')->__('Назва'),
             'title' => Mage::helper('petryk_action')->__('Назва'),
             'required' => true,
@@ -62,6 +63,7 @@ class Petryk_Action_Block_Adminhtml_Action_Edit_Tab_General extends Mage_Adminht
 
         $fieldset->addField('start_datetime', 'datetime', array(
             'name' => 'start_datetime',
+            'class' => 'validate-date',
             'label' => Mage::helper('petryk_action')->__('Дата початку'),
             'title' => Mage::helper('petryk_action')->__('Дата початку'),
             'image' => $this->getSkinUrl('images/grid-cal.gif'),
@@ -73,6 +75,7 @@ class Petryk_Action_Block_Adminhtml_Action_Edit_Tab_General extends Mage_Adminht
 
         $fieldset->addField('end_datetime', 'datetime', array(
             'name' => 'end_datetime',
+            'class' => 'validate-date',
             'label' => Mage::helper('petryk_action')->__('Дата закінчення'),
             'title' => Mage::helper('petryk_action')->__('Дата закінчення'),
             'image' => $this->getSkinUrl('images/grid-cal.gif'),
@@ -92,12 +95,14 @@ class Petryk_Action_Block_Adminhtml_Action_Edit_Tab_General extends Mage_Adminht
 
         $fieldset->addField('short_description', 'textarea', array(
             'name' => 'short_description',
+            'class' => 'validate-length maximum-length-255 validate-no-html-tags',
             'label' => Mage::helper('petryk_action')->__('Короткий опис'),
             'title' => Mage::helper('petryk_action')->__('Короткий опис'),
         ));
 
         $fieldset->addField('description', 'textarea', array(
             'name' => 'description',
+            'class' => 'validate-no-html-tags',
             'label' => Mage::helper('petryk_action')->__('Опис'),
             'title' => Mage::helper('petryk_action')->__('Опис'),
         ));
