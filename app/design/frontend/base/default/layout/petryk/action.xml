@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<layout>
+    <petryk_action_index>
+        <reference name="head">
+            <action method="addCss">
+                <stylesheet>css/petryk/action.css</stylesheet>
+            </action>
+        </reference>
+    </petryk_action_index>
+
+    <petryk_action_index_index>
+        <update handle="petryk_action_index_list"/>
+    </petryk_action_index_index>
+
+    <petryk_action_index_list>
+        <update handle="petryk_action_index"/>
+
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/2columns-right.phtml</template>
+            </action>
+        </reference>
+
+        <reference name="content">
+            <block type="petryk_action/list" name="petryk_action.list" template="petryk/action-list.phtml"/>
+        </reference>
+    </petryk_action_index_list>
+
+    <petryk_action_index_view>
+        <update handle="petryk_action_index"/>
+
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/1column.phtml</template>
+            </action>
+        </reference>
+
+        <reference name="content">
+            <block type="petryk_action/view" name="petryk_action.view" template="petryk/action-view.phtml"/>
+        </reference>
+    </petryk_action_index_view>
+</layout>
