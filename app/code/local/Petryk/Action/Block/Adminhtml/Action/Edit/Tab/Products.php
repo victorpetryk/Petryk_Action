@@ -81,7 +81,9 @@ class Petryk_Action_Block_Adminhtml_Action_Edit_Tab_Products extends Mage_Adminh
             ->addAttributeToSelect('type')
             ->addAttributeToSelect('status')
             ->addAttributeToSelect('visibility')
-            ->addAttributeToSelect('sku');
+            ->addAttributeToSelect('sku')
+            ->addAttributeToFilter('status', Mage_Catalog_Model_Product_Status::STATUS_ENABLED)
+            ->addFieldToFilter('visibility', Mage_Catalog_Model_Product_Visibility::VISIBILITY_BOTH);
 
         $this->setCollection($collection);
 
