@@ -74,9 +74,9 @@ class Petryk_Action_Helper_Data extends Mage_Core_Helper_Abstract
                 $uploader->save($this->getImageFolderPath(), $_FILES[$fieldName]['name']);
 
                 // Створюємо різні розміри зображень
-                $this->_resizeImage($_FILES[$fieldName]['name']);
-                $this->_resizeImage($_FILES[$fieldName]['name'], 200, 200);
-                $this->_resizeImage($_FILES[$fieldName]['name'], 300, 300);
+                $this->_resizeImage($uploader->getUploadedFileName());
+                $this->_resizeImage($uploader->getUploadedFileName(), 200, 200);
+                $this->_resizeImage($uploader->getUploadedFileName(), 300, 300);
 
                 $model->setData($fieldName, $uploader->getUploadedFileName());
             } catch (Exception $e) {
