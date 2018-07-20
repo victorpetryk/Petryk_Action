@@ -1,0 +1,63 @@
+<?php
+
+/**
+ * Шаблон гріду з акціями
+ *
+ * @category Petryk
+ * @package Petryk_Action
+ * @author Victor Petryk <victor.petryk@gmail.com>
+ */
+
+/* @var $this Petryk_Action_Block_Grid */
+
+$_actionsCollection = $this->getActions();
+$_helper = Mage::helper('petryk_action');
+?>
+
+<?php if ($_actionsCollection->count()) : ?>
+    <div class="action-view-products">
+        <h4><?php echo $_helper->__('Акції, в яких бере участь даний товар'); ?>:</h4>
+
+        <?php $_columnCount = 5; ?>
+        <ul class="products-grid products-grid--max-<?php echo $_columnCount; ?>-col">
+            <?php $i = 0;
+            foreach ($_actionsCollection as $_action):
+                $i++; ?>
+                <li class="item<?php if (($i - 1) % $_columnCount == 0): ?> first<?php elseif ($i % $_columnCount == 0): ?> last<?php endif; ?>">
+                    <a href="<?php echo $this->getActionUrl($_action->getId()); ?>" class="product-image"
+                       title="<?php echo $_action->getName(); ?>">
+
+                        <?php $imageFile = $_action->getImage() ? $_action->getImage() : 'placeholder.jpg'; ?>
+
+                        <img src="<?php echo $_helper->getImageFile($imageFile, '200x200', true); ?>"
+                             alt="<?php echo $_action->getName(); ?>">
+                    </a>
+                    <div class="product-info">
+                        <h2 class="product-name">
+                            <a href="<?php echo $this->getActionUrl($_action->getId()); ?>"
+                               title="<?php echo $_action->getName(); ?>">
+                                <?php echo $_action->getName(); ?>
+                            </a>
+                        </h2>
+
+                        <div class="price-box">
+                            <p>
+                                <span>Початок:</span> <?php echo Mage::helper('core')->formatDate($_action->getStartDatetime(),
+                                    'short', true); ?>
+                            </p>
+
+                            <?php if (!$_action->getEndDatetime()) : ?>
+                                <p><?php echo $_helper->__('Акція безстрокова'); ?></p>
+                            <?php else : ?>
+                                <p>
+                                    <span>Кінець:</span> <?php echo Mage::helper('core')->formatDate($_action->getEndDatetime(),
+                                        'short', true); ?>
+                                </p>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </li>
+            <?php endforeach ?>
+        </ul>
+    </div>
+<?php endif; ?>

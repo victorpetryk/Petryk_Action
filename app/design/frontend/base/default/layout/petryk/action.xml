@@ -39,4 +39,11 @@
             <block type="petryk_action/view" name="petryk_action.view" template="petryk/action-view.phtml"/>
         </reference>
     </petryk_action_index_view>
+
+    <catalog_product_view>
+        <reference name="content">
+            <block type="petryk_action/grid" after="product.info" name="petryk_action.grid"
+                   template="petryk/action-grid.phtml"/>
+        </reference>
+    </catalog_product_view>
 </layout>

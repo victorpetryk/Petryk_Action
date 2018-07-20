@@ -88,4 +88,21 @@ class Petryk_Action_Model_Resource_Action extends Mage_Core_Model_Resource_Db_Ab
 
         return $this->_getReadAdapter()->fetchPairs($select, $bind);
     }
+
+    /**
+     * Отримуємо акції, прив'язані до товару
+     *
+     * @param $productId
+     * @return array
+     */
+    public function getLinkedActions($productId)
+    {
+        $select = $this->_getReadAdapter()->select()
+            ->from($this->_actionProductTable, array('action_id'))
+            ->where('product_id = :product_id');
+
+        $bind = array('product_id' => (int)$productId);
+
+        return $this->_getReadAdapter()->fetchPairs($select, $bind);
+    }
 }
