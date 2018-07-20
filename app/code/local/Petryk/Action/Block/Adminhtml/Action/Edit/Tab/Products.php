@@ -168,7 +168,13 @@ class Petryk_Action_Block_Adminhtml_Action_Edit_Tab_Products extends Mage_Adminh
      */
     protected function _getSelectedProducts()
     {
-        return array_values($this->getSelectedActionProducts());
+        $products = $this->getActionProducts();
+
+        if (!is_array($products)) {
+            $products = array_values($this->getSelectedActionProducts());
+        }
+
+        return $products;
     }
 
     /**
