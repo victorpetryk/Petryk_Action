@@ -40,6 +40,16 @@
                 </setup>
             </petryk_action_setup>
         </resources>
+        <events>
+            <page_block_html_topmenu_gethtml_before>
+                <observers>
+                    <petryk_action>
+                        <class>petryk_action/observer</class>
+                        <method>addLinkToTopmenu</method>
+                    </petryk_action>
+                </observers>
+            </page_block_html_topmenu_gethtml_before>
+        </events>
     </global>
     <frontend>
         <routers>
