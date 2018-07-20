@@ -74,6 +74,12 @@ class Petryk_Action_Block_Adminhtml_Action_Edit_Tab_Products extends Mage_Adminh
      */
     protected function _prepareCollection()
     {
+        // Колекція вебсайтів
+        $websiteModel = Mage::getModel('core/website')->getCollection();
+
+        // Оримуємо ідентифікатор вебсайту (потрібно для виключення товарів, які не прив'язані до жодного сайту)
+        $websiteId = $websiteModel->getFirstItem()->getId();
+
         $collection = Mage::getModel('catalog/product')
             ->getCollection()
             ->addAttributeToSelect('entity_id')
@@ -82,6 +88,7 @@ class Petryk_Action_Block_Adminhtml_Action_Edit_Tab_Products extends Mage_Adminh
             ->addAttributeToSelect('status')
             ->addAttributeToSelect('visibility')
             ->addAttributeToSelect('sku')
+            ->addWebsiteFilter($websiteId)
             ->addAttributeToFilter('status', Mage_Catalog_Model_Product_Status::STATUS_ENABLED)
             ->addFieldToFilter('visibility', Mage_Catalog_Model_Product_Visibility::VISIBILITY_BOTH);
 
