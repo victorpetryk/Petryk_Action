@@ -41,6 +41,24 @@
             </petryk_action_setup>
         </resources>
     </global>
+    <frontend>
+        <routers>
+            <petryk_action>
+                <use>standard</use>
+                <args>
+                    <module>Petryk_Action</module>
+                    <frontName>petryk_action</frontName>
+                </args>
+            </petryk_action>
+        </routers>
+        <layout>
+            <updates>
+                <petryk_action>
+                    <file>petryk/action.xml</file>
+                </petryk_action>
+            </updates>
+        </layout>
+    </frontend>
     <admin>
         <routers>
             <adminhtml>
