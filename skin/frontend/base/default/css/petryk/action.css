@@ -23,6 +23,7 @@
 .action-view-image {
     float: left;
     margin-right: 20px;
+    margin-bottom: 20px;
     width: 322px;
 }
 
@@ -62,10 +63,6 @@
 .action-item-more-button:hover {
     text-decoration: none;
     border-color: #ededed;
-}
-
-.action-view-products .hr-separator {
-    margin-top: 20px;
 }
 
 .action-view-products ul li .product-info {
