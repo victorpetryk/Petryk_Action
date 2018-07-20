@@ -1,0 +1,101 @@
+<?php
+
+/**
+ * Шаблон перегляду акції
+ *
+ * @category Petryk
+ * @package Petryk_Action
+ * @author Victor Petryk <victor.petryk@gmail.com>
+ */
+
+/* @var $this Petryk_Action_Block_View */
+
+$_action = $this->getAction();
+$_products = $this->getProducts();
+
+$_helper = Mage::helper('petryk_action');
+
+?>
+
+<div class="action-view clearfix">
+    <div class="action-view-image">
+        <?php $_imageFile = $_action->getImage() ? $_action->getImage() : 'placeholder.jpg'; ?>
+
+        <img src="<?php echo $_helper->getImageFile($_imageFile, '300x300', true); ?>"
+             alt="<?php echo $_action->getName(); ?>">
+    </div>
+
+    <div class="action-view-info">
+        <h2><?php echo $_action->getName(); ?></h2>
+
+        <div class="action-view-dates">
+            <p>
+                <span>Початок:</span> <?php echo Mage::helper('core')->formatDate($_action->getStartDatetime(),
+                    'short', true); ?>
+            </p>
+
+            <?php if (!$_action->getEndDatetime()) : ?>
+                <p><?php echo $_helper->__('Акція безстрокова'); ?></p>
+            <?php else : ?>
+                <p>
+                    <span>Кінець:</span> <?php echo Mage::helper('core')->formatDate($_action->getEndDatetime(),
+                        'short', true); ?>
+                </p>
+            <?php endif; ?>
+        </div>
+
+        <?php if ($_action->getShortDescription()) : ?>
+            <h4><?php echo $_helper->__('Короткий опис'); ?>:</h4>
+            <p><?php echo $_action->getShortDescription(); ?></p>
+        <?php endif; ?>
+
+        <?php if ($_action->getDescription()) : ?>
+            <hr class="hr-separator"/>
+            <h4><?php echo $_helper->__('Опис'); ?>:</h4>
+            <p><?php echo $_action->getDescription(); ?></p>
+        <?php endif; ?>
+    </div>
+</div>
+
+<?php if ($_products->count()) : ?>
+    <div class="action-view-products">
+        <hr class="hr-separator"/>
+        <h4><?php echo $_helper->__('Товари, які беруть участь в акції'); ?>:</h4>
+
+        <?php $_columnCount = 5; ?>
+        <ul class="products-grid products-grid--max-<?php echo $_columnCount; ?>-col">
+            <?php $i = 0;
+            foreach ($_products as $_product):
+                $i++; ?>
+                <li class="item<?php if (($i - 1) % $_columnCount == 0): ?> first<?php elseif ($i % $_columnCount == 0): ?> last<?php endif; ?>">
+                    <a href="<?php echo $_product->getProductUrl(); ?>"
+                       title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null,
+                           true) ?>"
+                       class="product-image">
+                        <?php $_imgSize = 210; ?>
+                        <img id="product-collection-image-<?php echo $_product->getId(); ?>"
+                             src="<?php echo $this->helper('catalog/image')->init($_product,
+                                 'small_image')->resize($_imgSize); ?>"
+                             alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null,
+                                 true) ?>"/>
+                    </a>
+                    <div class="product-info">
+                        <h2 class="product-name">
+                            <a href="<?php echo $_product->getProductUrl(); ?>"
+                               title="<?php echo $this->stripTags($_product->getName(), null, true) ?>">
+                                <?php echo $this->helper('catalog/output')->productAttribute($_product,
+                                    $_product->getName(), 'name') ?>
+                            </a>
+                        </h2>
+
+                        <div class="price-box">
+                            <span class="price">
+                                <?php echo Mage::helper('core')->currency($_product->getPrice(), true, false) ?>
+                            </span>
+                        </div>
+                    </div>
+                </li>
+            <?php endforeach ?>
+        </ul>
+    </div>
+<?php endif; ?>
