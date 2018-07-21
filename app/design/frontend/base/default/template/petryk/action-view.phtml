@@ -12,7 +12,7 @@
 
 $_action = $this->getAction();
 $_products = $this->getProducts();
-
+$status = Mage::getSingleton('petryk_action/source_status');
 $_helper = Mage::helper('petryk_action');
 
 ?>
@@ -29,6 +29,10 @@ $_helper = Mage::helper('petryk_action');
         <h2><?php echo $_action->getName(); ?></h2>
 
         <div class="action-view-dates">
+            <?php if ($_action->getStatus() == $status::IS_VALID) : ?>
+                <p><strong>Акція діє!</strong></p>
+            <?php endif; ?>
+
             <p>
                 <span>Початок:</span> <?php echo $_action->getStartDatetime(); ?>
             </p>

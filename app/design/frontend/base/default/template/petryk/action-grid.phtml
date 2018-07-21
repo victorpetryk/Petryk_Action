@@ -11,6 +11,7 @@
 /* @var $this Petryk_Action_Block_Grid */
 
 $_actionsCollection = $this->getActions();
+$status = Mage::getSingleton('petryk_action/source_status');
 $_helper = Mage::helper('petryk_action');
 ?>
 
@@ -41,6 +42,10 @@ $_helper = Mage::helper('petryk_action');
                         </h2>
 
                         <div class="price-box">
+                            <?php if ($_action->getStatus() == $status::IS_VALID) : ?>
+                                <p><strong>Акція діє!</strong></p>
+                            <?php endif; ?>
+
                             <p>
                                 <span>Початок:</span> <?php echo Mage::helper('core')->formatDate($_action->getStartDatetime(),
                                     'short', true); ?>
