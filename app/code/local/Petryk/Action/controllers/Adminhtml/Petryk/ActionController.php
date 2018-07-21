@@ -116,11 +116,9 @@ class Petryk_Action_Adminhtml_Petryk_ActionController extends Mage_Adminhtml_Con
             }
 
             // Зберігаємо всі дати в GMT зоні грінвіча
-            $createDatetime = Mage::getModel('core/date')->gmtDate(null, $data['create_datetime']);
             $startDatetime = Mage::getModel('core/date')->gmtDate(null, $data['start_datetime']);
             $endDatetime = Mage::getModel('core/date')->gmtDate(null, $data['end_datetime']);
 
-            $model->setData('create_datetime', $createDatetime);
             $model->setData('start_datetime', $startDatetime);
             $model->setData('end_datetime', $endDatetime);
 
