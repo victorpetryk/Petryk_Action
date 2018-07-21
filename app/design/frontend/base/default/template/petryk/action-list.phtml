@@ -27,49 +27,49 @@ $_helper = Mage::helper('petryk_action');
         <?php echo $this->getToolbarHtml() ?>
 
         <ul>
-            <?php foreach ($_actionsCollection as $action) : ?>
+            <?php foreach ($_actionsCollection as $_action) : ?>
 
                 <li class="action-item clearfix">
 
                     <div class="action-item-image">
-                        <a href="<?php echo $this->getActionUrl($action->getId()); ?>"
-                           title="<?php echo $action->getName(); ?>">
+                        <a href="<?php echo $this->getActionUrl($_action->getId()); ?>"
+                           title="<?php echo $_action->getName(); ?>">
 
-                            <?php $imageFile = $action->getImage() ? $action->getImage() : 'placeholder.jpg'; ?>
+                            <?php $imageFile = $_action->getImage() ? $_action->getImage() : 'placeholder.jpg'; ?>
 
                             <img src="<?php echo $_helper->getImageFile($imageFile, '200x200', true); ?>"
-                                 alt="<?php echo $action->getName(); ?>">
+                                 alt="<?php echo $_action->getName(); ?>">
                         </a>
                     </div>
 
                     <div class="action-item-info">
                         <h2>
-                            <a href="<?php echo $this->getActionUrl($action->getId()); ?>"
-                               title="<?php echo $action->getName(); ?>">
-                                <?php echo $action->getName(); ?>
+                            <a href="<?php echo $this->getActionUrl($_action->getId()); ?>"
+                               title="<?php echo $_action->getName(); ?>">
+                                <?php echo $_action->getName(); ?>
                             </a>
                         </h2>
 
                         <div class="action-item-dates">
                             <p>
-                                <span>Початок:</span> <?php echo Mage::helper('core')->formatDate($action->getStartDatetime(),
+                                <span>Початок:</span> <?php echo Mage::helper('core')->formatDate($_action->getStartDatetime(),
                                     'short', true); ?>
                             </p>
 
-                            <?php if (!$action->getEndDatetime()) : ?>
+                            <?php if (!$_action->getEndDatetime()) : ?>
                                 <p><?php echo $_helper->__('Акція безстрокова'); ?></p>
                             <?php else : ?>
                                 <p>
-                                    <span>Кінець:</span> <?php echo Mage::helper('core')->formatDate($action->getEndDatetime(),
+                                    <span>Кінець:</span> <?php echo Mage::helper('core')->formatDate($_action->getEndDatetime(),
                                         'short', true); ?>
                                 </p>
                             <?php endif; ?>
                         </div>
 
-                        <p><?php echo $action->getShortDescription(); ?></p>
+                        <p><?php echo $_action->getShortDescription(); ?></p>
 
-                        <a href="<?php echo $this->getActionUrl($action->getId()); ?>" class="action-item-more-button"
-                           title="<?php echo $action->getName(); ?>">
+                        <a href="<?php echo $this->getActionUrl($_action->getId()); ?>" class="action-item-more-button"
+                           title="<?php echo $_action->getName(); ?>">
                             <?php echo $_helper->__('Детальніше про акцію'); ?>
                         </a>
                     </div>
