@@ -23,4 +23,48 @@ class Petryk_Action_Model_Observer
         ), 'id', $tree, $menu);
         $menu->addChild($linkNode);
     }
+
+    /**
+     * Змінюємо статус акції по крону
+     */
+    public function changeActionStatus()
+    {
+        $isActive = Mage::getSingleton('petryk_action/source_active');
+        $status = Mage::getSingleton('petryk_action/source_status');
+
+        // Вибираємо акції, що повинні стартувати
+        $startActions = Mage::getModel('petryk_action/action')->getCollection()
+            ->addFieldToFilter('is_active', array('eq' => $isActive::YES))
+            ->addFieldToFilter('status', array(
+                array('neq' => $status::IS_VALID),
+                array('neq' => $status::CLOSED),
+            ))
+            ->addFieldToFilter('start_datetime', array('to' => Mage::getModel('core/date')->gmtDate()));
+
+        // Змінюємо статус акцій, що стартують
+        foreach ($startActions as $startAction) {
+            $startAction->setStatus($status::IS_VALID)
+                ->save();
+        }
+
+        // Вибираємо акції, що повинні закінчуватися
+        $endActions = Mage::getModel('petryk_action/action')->getCollection()
+            ->addFieldToFilter('is_active', array('eq' => $isActive::YES))
+            ->addFieldToFilter('status', array(
+                array('neq' => $status::NOT_START),
+                array('neq' => $status::CLOSED),
+            ))
+            ->addFieldToFilter('end_datetime', array(
+                'to' => Mage::getModel('core/date')->gmtDate(),
+                'notnull' => '',
+            ));
+
+        // Змінюємо статус та актисність акцій, що закінчуються
+        foreach ($endActions as $endAction) {
+            $endAction->setStatus($status::CLOSED)
+                ->setIsActive($isActive::NO)
+                ->save();
+        }
+
+    }
 }

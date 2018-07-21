@@ -89,4 +89,16 @@
             </updates>
         </layout>
     </adminhtml>
+    <crontab>
+        <jobs>
+            <petryk_action_change_status>
+                <schedule>
+                    <cron_expr>*/5 * * * *</cron_expr>
+                </schedule>
+                <run>
+                    <model>petryk_action/observer::changeActionStatus</model>
+                </run>
+            </petryk_action_change_status>
+        </jobs>
+    </crontab>
 </config>
