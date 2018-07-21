@@ -35,7 +35,7 @@ class Petryk_Action_Block_List extends Mage_Core_Block_Template
         ));
 
         $toolbar->setDefaultOrder('start_datetime');
-        $toolbar->setDefaultDirection('desc');
+        $toolbar->setDefaultDirection('asc');
         $toolbar->disableViewSwitcher();
         $toolbar->setCollection($this->getCollection());
 
