@@ -30,16 +30,14 @@ $_helper = Mage::helper('petryk_action');
 
         <div class="action-view-dates">
             <p>
-                <span>Початок:</span> <?php echo Mage::helper('core')->formatDate($_action->getStartDatetime(),
-                    'short', true); ?>
+                <span>Початок:</span> <?php echo $_action->getStartDatetime(); ?>
             </p>
 
             <?php if (!$_action->getEndDatetime()) : ?>
                 <p><?php echo $_helper->__('Акція безстрокова'); ?></p>
             <?php else : ?>
                 <p>
-                    <span>Кінець:</span> <?php echo Mage::helper('core')->formatDate($_action->getEndDatetime(),
-                        'short', true); ?>
+                    <span>Кінець:</span> <?php echo $_action->getEndDatetime(); ?>
                 </p>
             <?php endif; ?>
         </div>

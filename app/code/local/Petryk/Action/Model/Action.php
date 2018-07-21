@@ -14,6 +14,20 @@ class Petryk_Action_Model_Action extends Mage_Core_Model_Abstract
         $this->_init('petryk_action/action');
     }
 
+    protected function _afterLoad()
+    {
+        parent::_afterLoad();
+
+        $formattedStartDatetime = Mage::helper('core')->formatDate($this->getData('start_datetime'), 'short', true);
+        $this->setData('start_datetime', $formattedStartDatetime);
+
+        if ($this->getData('end_datetime')) {
+            $formattedEndDatetime = Mage::helper('core')->formatDate($this->getData('end_datetime'), 'short', true);
+
+            $this->setData('end_datetime', $formattedEndDatetime);
+        }
+    }
+
     protected function _beforeDelete()
     {
         $id = $this->getId();
