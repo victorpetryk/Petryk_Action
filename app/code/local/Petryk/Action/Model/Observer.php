@@ -35,10 +35,7 @@ class Petryk_Action_Model_Observer
         // Вибираємо акції, що повинні стартувати
         $startActions = Mage::getModel('petryk_action/action')->getCollection()
             ->addFieldToFilter('is_active', array('eq' => $isActive::YES))
-            ->addFieldToFilter('status', array(
-                array('neq' => $status::IS_VALID),
-                array('neq' => $status::CLOSED),
-            ))
+            ->addFieldToFilter('status', array('eq' => $status::NOT_START))
             ->addFieldToFilter('start_datetime', array('to' => Mage::getModel('core/date')->gmtDate()));
 
         // Змінюємо статус акцій, що стартують
@@ -50,10 +47,7 @@ class Petryk_Action_Model_Observer
         // Вибираємо акції, що повинні закінчуватися
         $endActions = Mage::getModel('petryk_action/action')->getCollection()
             ->addFieldToFilter('is_active', array('eq' => $isActive::YES))
-            ->addFieldToFilter('status', array(
-                array('neq' => $status::NOT_START),
-                array('neq' => $status::CLOSED),
-            ))
+            ->addFieldToFilter('status', array('eq' => $status::IS_VALID))
             ->addFieldToFilter('end_datetime', array(
                 'to' => Mage::getModel('core/date')->gmtDate(),
                 'notnull' => '',
